@@ -4,3 +4,186 @@
 *:after {
   box-sizing: border-box;
 }
+/*** GENERAL /****/
+body {
+  padding: 1% 2%;
+}
+#sitePage{
+  background-color: #fff;
+}
+/*** HEADER STYLES ***/
+#top-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3%;
+}
+#top-header .siteName a {
+  font-size: 30px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-family: "Arial";
+}
+
+#top-header #tools a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-family: "Arial";
+}
+
+#wrapper nav{
+  background: #001F3F;
+}
+
+#wrapper nav ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0px;
+}
+
+#wrapper nav ul li {
+  color: #fff;
+  padding: 10px 0;
+  font-size: 15px;
+  font-family: "Arial";
+}
+
+/*** hero shot /****/
+.hero-shot h1{
+  font-size: 30px;
+  color: #000;
+  font-weight: 700;
+  font-family: "Arial";
+}
+.hero-shot .hero-container{
+  display: flex;
+  align-items: center;
+}
+.hero-shot .hero-container .img-container img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.hero-shot .hero-container .hero-box{
+  width: 20%;
+  position: relative;
+  z-index: 2;
+  left: 10%;
+  background-color: rgba(255, 255, 255, 0.8); 
+}
+.hero-shot .hero-container .hero-box h3{
+  font-size: 23px;
+  color: #00c3ff;
+  font-weight: 700;
+  font-family: "Arial";
+  margin: 0;
+}
+.hero-shot .hero-container .hero-box p{
+  font-size: 18px;
+  color: #00c3ff;
+  font-weight: 400;
+  font-family: "Arial";
+  margin: 5px 0;
+}
+
+.hero-shot .hero-container .hero-box .hero-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 50px;
+  background: #00c3ff;
+  color: #000;
+  font-size: 15px;
+  font-family: "Arial";
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+#specs-sec{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column-reverse;
+}
+#specs-sec h3 {
+  font-size: 23px;
+  color: #000;
+  font-weight: 700;
+  font-family: "Arial";
+  margin: 0;
+}
+
+#specs-sec .upgrades{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0px;
+}
+#specs-sec .upgrades h3 {
+  width: 100%;
+}
+#specs-sec .upgrades .img-container{
+  width: 45%;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  background-color: #00c3ff;
+  height: 120px;
+}
+
+#specs-sec .upgrades .img-container a{
+  display: block;
+  font-size: 18px;
+  text-align: center;
+}
+
+#specs-sec .reviews {
+  margin: 10px 0px;
+  margin-top: 20%;
+}
+
+#specs-sec .reviews ul li {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+
+@media (min-width: 768px){
+  body {
+    background-image: url("/images/site/checkerboard.jpg");
+  }
+  #sitePage{
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2%;
+    border-radius: 15px;
+    border: 5px solid #00c3ff;
+  }
+  #sitePage{
+    max-width: 100%;
+  }
+  #specs-sec .reviews {
+    margin-top: 0%;
+  }
+  #specs-sec .upgrades .img-container{
+    width: 45%;
+  }
+}
+
+@media (min-width: 1200px){
+  #sitePage{
+    max-width: 80%;
+  }
+  #specs-sec .upgrades .img-container{
+    width: 48%;
+  }
+}
