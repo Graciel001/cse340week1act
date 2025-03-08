@@ -15,10 +15,7 @@ const static = require("./routes/static")
 /* ***********************
  * View Engine and Templates
  *************************/
-const path = require("path"); // Importar módulo para manejar rutas
 
-// Configurar la carpeta de vistas correctamente
-app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
