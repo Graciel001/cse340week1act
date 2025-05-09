@@ -29,7 +29,7 @@ app.set("layout", "./layouts/layout") // not at views root
 
 app.use(static)
 
-app.get("/", function(req, res){
+app.get("https://cse340week1act.onrender.com/", function(req, res){
   res.render("index", {title: "home"})
 })
 
