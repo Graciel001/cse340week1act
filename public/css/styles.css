@@ -184,6 +184,19 @@ body {
     max-width: 80%;
   }
   #specs-sec .upgrades .img-container{
-    width: 48%;
+    width: 45%;
+  }
+}
+@media (min-width: 1200px){
+  #specs-sec{
+    flex-direction: row;
+  }
+  #specs-sec .upgrades{
+    width: 60%;
+    padding: 10px;
+  }
+  #specs-sec .reviews{
+    width: 40%;
+    padding: 10px;
   }
 }
