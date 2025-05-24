@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
+const errorRoute = require("./routes/errorRoute")
 
 
 /* ***********************
@@ -36,6 +37,12 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Inventory routes
+app.use("/error", errorRoute)
+// Error trigger route
+app.use("/error", errorRoute)
+
 
 
 /* ***********************

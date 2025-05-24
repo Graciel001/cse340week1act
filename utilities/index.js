@@ -24,7 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
@@ -36,7 +35,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + ' details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -53,10 +52,30 @@ Util.buildClassificationGrid = async function(data){
     })
     grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
+
+/* ***************************
+ *  Build vehicle detail HTML
+ * ************************** */
+function buildVehicleDetailHTML(vehicle) {
+  let detail = `
+    <section class="vehicle-detail">
+      <h2>${vehicle.inv_make} ${vehicle.inv_model}</h2>
+      <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+      <div class="vehicle-info">
+        <p><strong>Price:</strong> <span class="price">$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span></p>
+        <p><strong>Description:</strong> ${vehicle.inv_description}</p>
+        <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+        <p><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>
+      </div>
+    </section>
+  `;
+  return detail;
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -64,5 +83,8 @@ Util.buildClassificationGrid = async function(data){
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+// Export the buildVehicleDetailHTML function to be accessible outside this file
+Util.buildVehicleDetailHTML = buildVehicleDetailHTML
 
 module.exports = Util
