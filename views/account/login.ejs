@@ -1,0 +1,29 @@
+<% if (message) { %>
+    <div class="flash-message"><%= message %></div>
+  <% } %>
+  
+  <h1><%= title %></h1>
+  
+  <form action="/account/login" method="post" id="loginForm" class="login-form">
+    <label for="account_email">Email</label>
+    <input 
+      type="email" 
+      id="account_email" 
+      name="account_email" 
+      required
+    >
+  
+    <label for="account_password">Password</label>
+    <input 
+      type="password" 
+      id="account_password" 
+      name="account_password" 
+      required 
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{12,}$"
+    >
+  
+    <button type="submit">Login</button>
+  </form>
+  
+  <p>Don't have an account? <a href="/account/register">Click here to register</a>.</p>
+  

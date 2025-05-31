@@ -44,4 +44,17 @@ invCont.buildByVehicleId = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Build Management
+ * ************************** */
+
+invCont.buildManagement = async function (req, res) {
+  let nav = await utilities.getNav()
+  res.render("inventory/management", {
+    title: "Inventory Management",
+    nav,
+    message: req.flash("notice")
+  })
+}
+
 module.exports = invCont
