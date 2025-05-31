@@ -1,11 +1,4 @@
-<!-- views/inventory/management.ejs -->
-<%- include('../partials/head', { title: 'Inventory Management' }) %>
-<%- include('../partials/header') %>
-<%- include('../partials/nav') %>
-
 <main>
-  <h1>Inventory Management</h1>
-
   <% if (message) { %>
     <div class="notice"><%= message %></div>
   <% } %>
@@ -16,4 +9,3 @@
   </ul>
 </main>
 
-<%- include('../partials/footer') %>

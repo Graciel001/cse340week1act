@@ -454,3 +454,157 @@ body {
   margin-bottom: 1rem;
   border-radius: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Page Layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #3498db;
+  padding: 0.5rem 1rem;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+select,
+textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button, input[type="submit"] {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #27ae60;
+}
+
+/* Flash Messages */
+.notice {
+  padding: 1rem;
+  background-color: #fce4ec;
+  color: #c2185b;
+  border-left: 5px solid #c2185b;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+/* Inventory Grid */
+#inv-display {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0;
+}
+
+#inv-display li {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#inv-display img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.namePrice {
+  margin-top: 1rem;
+}
+
+.namePrice h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.namePrice span.price {
+  color: #27ae60;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

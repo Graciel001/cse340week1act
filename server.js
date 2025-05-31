@@ -66,14 +66,14 @@ app.use(static)
 
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// Inventory routes
-app.use("/inv", inventoryRoute)
-
 app.use("/account", accountRoute)
 
 
 // Error trigger route
 app.use("/error", errorRoute)
+
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 
 
