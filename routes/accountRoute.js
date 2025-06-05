@@ -12,6 +12,14 @@ router.get("/login", utilities.handleErrors(accountsController.buildLogin))
 // Route to build register view 
 router.get("/register", utilities.handleErrors(accountsController.buildRegister))
 
+// Account management view
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountsController.buildAccountManagement)
+)
+
+
 //  Route to process the registration (POST)
 //router.post("/register", utilities.handleErrors(accountsController.registerAccount))
 
@@ -26,9 +34,9 @@ router.post(
 // Process the login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  regValidate.loginRules(),
+  regValidate.checkLoginData, 
+  utilities.handleErrors(accountsController.accountLogin)
 )
 
 // Export the router
