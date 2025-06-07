@@ -313,11 +313,9 @@ invCont.buildDeleteInventoryView = async function (req, res, next) {
 invCont.deleteInventory = async function (req, res, next) {
   try {
     const inv_id = parseInt(req.body.inv_id)
-
     console.log("🔎 inv_id recibido:", inv_id)
 
     const deleteResult = await invModel.deleteInventoryItem(inv_id)
-
     console.log("📦 Resultado de delete:", deleteResult)
 
     if (deleteResult.rowCount > 0) {
@@ -328,10 +326,35 @@ invCont.deleteInventory = async function (req, res, next) {
       res.redirect("/inv/delete/" + inv_id)
     }
   } catch (error) {
-    console.error("❌ Error en deleteInventory controller:", error)
+    console.error("❌ Error en deleteInventory controller:", error.message)
     next(error)
   }
 }
+
+invCont.buildDeleteInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id);
+  try {
+    const itemData = await invModel.getVehicleById(inv_id);
+    if (!itemData) {
+      req.flash("notice", "Sorry, no matching inventory item found.");
+      return res.redirect("/inv");
+    }
+    const nav = await utilities.getNav(req, res, next);
+    res.render("inventory/delete-confirm", {
+      title: `Delete ${itemData.inv_make} ${itemData.inv_model}`,
+      inv_make: itemData.inv_make,
+      inv_model: itemData.inv_model,
+      inv_year: itemData.inv_year,
+      inv_price: itemData.inv_price,
+      inv_id: itemData.inv_id,
+      nav,  // enviar nav a la vista
+    });
+  } catch (error) {
+    console.error("Error in buildDeleteInventoryView: " + error);
+    next(error);
+  }
+}
+
 
 
 module.exports = invCont
