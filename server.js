@@ -57,6 +57,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin || false
+  res.locals.account_firstname = req.session.account_firstname || ''
+  res.locals.account_type = req.session.account_type || ''
+  next()
+})
+
 
 
 /* ***********************
@@ -106,12 +113,12 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message,
+  console.error("❌ Error stack:", err.stack);
+  const nav = await utilities.getNav();
+  res.status(err.status || 500).render("errors/error", {
+    title: err.status || "Server Error",
+    message: err.message,
+    stack: err.stack, 
     nav
-  })
-})
+  });
+});
