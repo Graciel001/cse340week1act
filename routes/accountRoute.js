@@ -15,8 +15,8 @@ router.get("/register", utilities.handleErrors(accountsController.buildRegister)
 // Account management view
 router.get(
   "/",
-  utilities.checkLogin,
-  utilities.handleErrors(accountsController.buildAccountManagement)
+  utilities.checkJWTToken,
+  utilities.checkLogin, utilities.handleErrors(accountsController.buildAccountManagement)
 )
 
 

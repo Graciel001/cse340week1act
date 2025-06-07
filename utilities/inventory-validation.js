@@ -41,28 +41,29 @@ const inventoryRules = () => {
     ]
   }
   
-  const checkInventoryData = async (req, res, next) => {
-    const errors = validationResult(req)
-    const classificationList = await require("./").buildClassificationList(req.body.classification_id)
-    if (!errors.isEmpty()) {
-      const nav = await require("./").getNav()
-      res.render("inventory/add-inventory", {
-        title: "Add Inventory",
-        nav,
-        classificationList,
-        message: req.flash("notice"),
-        errors: errors.array(),
-        ...req.body
-      })
-      return
-    }
-    next()
+const checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  const classificationList = await require("./").buildClassificationList(req.body.classification_id)
+  if (!errors.isEmpty()) {
+    const nav = await require("./").getNav()
+    const itemName = `${req.body.inv_make} ${req.body.inv_model}`
+    res.render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationList,
+      message: req.flash("notice"),
+      errors: errors.array(),
+      ...req.body  // Aquí metemos todo el body, incluyendo inv_id, inv_make, etc
+    })
+    return
   }
+  next()
+}
 
 
 module.exports = {
   classificationRules,
   checkClassificationData,
-  checkInventoryData,
+  checkUpdateData,
   inventoryRules
 }

@@ -51,6 +51,24 @@ validate.registrationRules = () => {
     ]
   }
 
+/* **********************************
+ * Login Data Validation Rules
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required."),
+
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Password is required.")
+  ]
+}
+
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
@@ -72,5 +90,22 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
   }
-    
+
+/* **************************************
+ * Check login data and return errors
+ * ************************************* */
+validate.checkLoginData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.render("account/login", {
+      errors: errors.array(),
+      title: "Login",
+      nav,
+      account_email: req.body.account_email,
+    })
+  }
+  next()
+}
+
   module.exports = validate

@@ -14,6 +14,12 @@ router.get("/detail/:inv_id", invController.buildByVehicleId);
 // Inventory Management View
 router.get("/", utilities.handleErrors(invController.buildManagement))
 
+// Route classification_id
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
 //inventory add classification
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
 
@@ -28,10 +34,39 @@ router.get("/add-inventory",
     utilities.handleErrors(invController.buildAddInventory)
   )
 
-  router.post("/add-inventory",
+router.post("/add-inventory",
     invValidate.inventoryRules(),
-    invValidate.checkInventoryData,
+    invValidate.checkUpdateData,
     utilities.handleErrors(invController.addInventory)
-  )
+)
+
+// Route to build edit inventory view by inventory ID
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+)
+
+// inventoryRoute.js
+router.post(
+  "/update",
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
+
+
+// Router to Delete
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteInventoryView)
+)
+
+// Router to Delete
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventory)
+)
+
 
 module.exports = router;
